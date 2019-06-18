@@ -1,34 +1,5 @@
 from django.db import models
-
-class TipoUsuario(models.Model):
-    nombre = models.CharField("Nomnbre Tipo usuario", max_length=50)
-
-    class meta:
-        verbose_name = "Tipo Ususario"
-        verbose_name_plural = "Tipos de usuario"
-
-    def __str__(self):
-        return self.nombre
-
-class TipoDocumento(models.Model):
-    nombre = models.CharField("Nomnbre Tipo Documento", max_length=50)
-
-    class Meta:
-        verbose_name="Tipo de documento"
-        verbose_name_plural="Tipos de documento"
-
-    def __str__(self):
-        return self.nombre
-
-class Titulo(models.Model):
-    nombre = models.CharField(max_length=45, verbose_name="Nombre Título")
-    
-    class Meta:
-        verbose_name="Título"
-        verbose_name_plural="Títulos"
-    
-    def __str__(self):
-        return self.nombre
+from src.usuariosparametros.models import TipoDocumento, TipoUsuario, Titulo
 
 class Usuario(models.Model):  
     tipousuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE)
@@ -47,7 +18,7 @@ class Usuario(models.Model):
         return self.alias 
 
 class DatosUsuario(models.Model): 
-    usuario_id = models.ForeignKey(Usuario, on_delete = models.CASCADE, verbose_name ="Identificacion del Usuario")
+    usuario_id = models.OneToOneField(Usuario, on_delete = models.CASCADE, verbose_name ="Identificacion del Usuario")
     titulo_nombre = models.ForeignKey(Titulo, on_delete=models.CASCADE)
     tipodocumento_id = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
     nombres = models.CharField(max_length = 50, verbose_name = "Nombres")

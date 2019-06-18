@@ -1,8 +1,13 @@
 from django.contrib import admin
-from .models import Usuario, TipoUsuario, DatosUsuario, Titulo, TipoDocumento
+from .models import Usuario, DatosUsuario
 
-admin.site.register(Usuario)
-admin.site.register(TipoUsuario)
+class UsuarioAdmin(admin.ModelAdmin):
+    list_display = ["alias", "tipousuario", "correo"]
+    # list_display_links = ["body"]
+    # list_editable = ["title"]
+    class Meta:
+        model = Usuario
+admin.site.register(Usuario, UsuarioAdmin)
+
+
 admin.site.register(DatosUsuario)
-admin.site.register(Titulo)
-admin.site.register(TipoDocumento)
