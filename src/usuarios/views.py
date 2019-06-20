@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Usuario
+from .forms import ContactForm
 
 def usuariosLista(request):
-    return HttpResponse('<h1>AQUI VA LISTA USUARIOS<h1>')
+    usa = Usuario.objects.all()
+    form = ContactForm()
+    return render(request, 'usuario/listaUsuario.html', {'usa':usa, 'form': form})
     
 def usuariosCrear(request):
     return HttpResponse('<h1>AQUI VA CREAR USUARIO<h1>')
