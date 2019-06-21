@@ -19,3 +19,9 @@ def usuariosBorrar(request, id):
 
 def usuariosDetalle(request, id):
     return HttpResponse('<h1>AQUI VA DETALLE USUARIO<h1>' + str(id))
+
+def login(request):
+    return render(request, 'autenticacion/index.html')
+
+def rec_contrasena(request):
+    return render(request, 'autenticacion/recuperar.html')
