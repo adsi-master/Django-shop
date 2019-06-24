@@ -39,13 +39,13 @@ class DetalleTra(models.Model):
     IdTransaccion = models.ForeignKey(Transaccion,on_delete = models.CASCADE,verbose_name = "Transaccion")
     Usuario_id = models.ForeignKey(Usuario,on_delete = models.CASCADE,verbose_name = "Usuario")
     #IdProducto = models.ForeignKey(Producto,on_delete = models.CASCADE,verbose_name = "Producto")
-    Fecha = models.DateTimeFlied(verbose_name="Fecha")
+    Fecha = models.DateTimeField(verbose_name="Fecha")
     created_at = models.DateTimeField(auto_now_add = True,auto_now = False, verbose_name = "Creado el")
     update_at = models.DateTimeField(auto_now_add = False,auto_now = True,verbose_name = "Actualizado el")
 
     class Meta:
         verbose_name="Detalle Transaccion"
-        vebose_name_plural="Detalles Transacciones"
+        verbose_name_plural="Detalles Transacciones"
     
     def __str__(self):
         return str(self.IdTransaccion)
