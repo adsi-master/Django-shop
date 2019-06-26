@@ -1,13 +1,5 @@
+from django.conf.urls import url
 from django.urls import path
 
-from .views import usuariosLista, usuariosCrear, usuariosBorrar, usuariosEditar, usuariosDetalle, login, rec_contrasena
-
 urlpatterns = [
-    path('', usuariosLista, name='usuariosLista'),
-    path('crear/', usuariosCrear, name='usuariosCrear'),
-    path('detalle/<int:id>', usuariosDetalle, name='usuariosDetalle'),
-    path('editar/<int:id>', usuariosEditar, name='usuariosEditar'),
-    path('borrar/<int:id>', usuariosBorrar, name='usuariosBorar'),
-    path('login/', login, name='login'),
-    path('recuperar/', rec_contrasena, name='recuperar')
 ]
