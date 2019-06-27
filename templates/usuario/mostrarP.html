@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+ {% if perfil %}
+
+{% for perf in perfil %}
+<div class="container m-4 text-center">
+   
+
+            <p>
+                <strong>Usuario: </strong><span>{{perf.usuario}}</span><br />
+                <strong>Tipo de documento de identidad: </strong><span>{{perf.tipodocumento}}</span><br />
+                <strong>Identificación: </strong><span>{{perf.documento}}</span><br />
+                <strong>Nombre:  </strong><span>{{perf.Nombre}}</span><br />
+                <strong>Apellido:  </strong><span>{{perf.Apellido}}</span><br />
+                <strong>Telefono:  </strong><span>{{perf.telefono}}</span><br />
+                <strong>Correo Electronico:  </strong><span>{{perf.correo}}</span><br>
+                <strong>Dirección:  </strong><span>{{perf.direccion}}</span><br />
+                <strong>Estado Civil:  </strong><span>{{perf.estasdocivil}}</span><br />
+                <strong>Genero:  </strong><span>{{perf.genero}}</span><br />
+                <strong>Avatar:  </strong><span>{{perf.avatar}}</span><br />
+                
+               
+
+            </p>
+
+            <div class="text-center">
+         <a href="{% url 'editarP' perf.documento  %}"><button class="btn btn-success">Editar</button></a>
+        <a href="{% url 'eliminarP' perf.documento  %}"><button class="btn btn-danger">Eliminar</button></a>
+        </div>
+   
+
+    </div>
+     {% endfor %}
+ 
+    {% else %}
+
+        <h1>No existen perfiles registrados</h1>
+    
+    {% endif %}
+</body>
+</html>

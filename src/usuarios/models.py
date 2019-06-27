@@ -9,10 +9,12 @@ from django.contrib.auth.models import User
 class UsuarioParametros(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
     tipodocumento = models.CharField(max_length=50)
+    Nombre = models.CharField(max_length=100, default="")
+    Apellido = models.CharField(max_length=100, default="")
     telefono = models.CharField(max_length=100)
     correo = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
-    documento = models.CharField(max_length=50) 
+    documento = models.CharField(max_length=50,  primary_key=True) 
     estasdocivil = models.CharField(max_length=50) 
     genero = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatars', blank=True)
