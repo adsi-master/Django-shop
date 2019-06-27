@@ -35,8 +35,9 @@ def editarP(request,documento):
     return render(request,'usuario/editarP.html',{'uparametros_form': uparametros_form,'error': error})
 
 def mostrarP(request):
-    perfil = UsuarioParametros.objects.all()
-    return render(request,'usuario/mostrarP.html',{'perfil': perfil})
+    perfil = UsuarioParametros.objects.get(id=request.user.id)
+    form = UParametrosForm(instance=perfil)    
+    return render(request,'usuario/mostrarP.html',{'form':form})
 
 
 def eliminarP(request,documento):

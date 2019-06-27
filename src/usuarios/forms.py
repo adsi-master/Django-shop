@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import UsuarioParametros
+from .models import UsuarioParametros, TipoDocumento
 
 class FormLogin(UserCreationForm):
     
@@ -12,19 +12,18 @@ class FormLogin(UserCreationForm):
         ]
 
 class UParametrosForm(forms.ModelForm):
+    tipodocumento = forms.ModelChoiceField(initial='', queryset=TipoDocumento.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger btn'}))
     
     class Meta:
         model = UsuarioParametros
         fields=[
-            'usuario','tipodocumento','documento','Nombre', 'Apellido', 'telefono', 'correo', 'direccion',
+            'tipodocumento','documento','nombre', 'apellido', 'telefono', 'correo', 'direccion',
             'estasdocivil','genero'
         ]       
         widgets={
-            'usuario' : forms.Select(attrs={'class':'form-control'}),
-            'tipodocumento' : forms.TextInput(attrs={'class': 'form-control'}),
             'documento' : forms.TextInput(attrs={'class': 'form-control'}),
-            'Nombre' : forms.TextInput(attrs={'class': 'form-control'}),
-            'Apellido' : forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre' : forms.TextInput(attrs={'class': 'form-control'}),
+            'apellido' : forms.TextInput(attrs={'class': 'form-control'}),
             'telefono' : forms.TextInput(attrs={'class': 'form-control'}),
             'correo' : forms.TextInput(attrs={'class': 'form-control'}),
             'direccion' : forms.TextInput(attrs={'class': 'form-control'}),
