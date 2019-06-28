@@ -17,6 +17,17 @@ class TipoDocumento(models.Model):
     def __str__(self):
         return self.nombre
 
+class EstadoCivil(models.Model):
+    id = models.AutoField(primary_key=True)
+    estado = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Estado Civil'
+        verbose_name_plural = 'Tipos de documentos'
+
+    def __str__(self):
+        return self.estado
+
 class UsuarioParametros(models.Model):
     id=models.AutoField(primary_key=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -27,7 +38,7 @@ class UsuarioParametros(models.Model):
     correo = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
     documento = models.CharField(max_length=50, unique=True, blank=True, null=True)
-    estasdocivil = models.CharField(max_length=50) 
+    estasdocivil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, blank=True, null=True) 
     genero = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='avatars', blank=True)
 

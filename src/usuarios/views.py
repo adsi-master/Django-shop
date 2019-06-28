@@ -11,11 +11,11 @@ from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 
 
-# class RegistroUsuario(CreateView):
-#     model = User
-#     template_name = "usuario/Registrar.html"
-#     form_class = UserCreationForm
-#     success_url = reverse_lazy('mostrarP')
+class RegistroUsuario(CreateView):
+    model = User
+    template_name = "usuario/Registrar.html"
+    form_class = UserCreationForm
+    success_url = reverse_lazy('mostrarP')
 
 
 
