@@ -25,3 +25,7 @@ def mostrarP(request):
     return render(request,'usuario/mostrarP.html',{'form':form})
 
 
+from django.views.generic import  TemplateView
+
+class Home(TemplateView):
+    template_name= 'index.html' 
