@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 # modelo usuario incluye los campos de:
 # username, firstname, lastname, email, password, groups... 
 
+# Se crea la clase TipoDocumento :
 class TipoDocumento(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=50)
@@ -17,17 +18,31 @@ class TipoDocumento(models.Model):
     def __str__(self):
         return self.nombre
 
+# Se crea la clase Genero :
+class Genero(models.Model):
+    id = models.AutoField(primary_key=True)
+    genero = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Genero'
+        verbose_name_plural = 'Generos'
+
+    def __str__(self):
+        return self.genero
+
+# Se crea la clase EstadoCivil :
 class EstadoCivil(models.Model):
     id = models.AutoField(primary_key=True)
     estado = models.CharField(max_length=50)
 
     class Meta:
         verbose_name = 'Estado Civil'
-        verbose_name_plural = 'Tipos de documentos'
+        verbose_name_plural = 'Tipos de Estados Civiles'
 
     def __str__(self):
         return self.estado
 
+# Se crea la clase UsuarioParametro :
 class UsuarioParametros(models.Model):
     id=models.AutoField(primary_key=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
