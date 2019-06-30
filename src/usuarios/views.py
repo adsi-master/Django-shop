@@ -1,21 +1,18 @@
 from django.shortcuts import render, HttpResponse,redirect
-# Create your views here.
-
-from  django.core.exceptions import ObjectDoesNotExist
-
-from .forms import UParametrosForm
-from .models import UsuarioParametros
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+# from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
+# from  django.core.exceptions import ObjectDoesNotExist
+from .forms import UParametrosForm, RegistroUserForm
+from .models import UsuarioParametros
 
 
 class RegistroUsuario(CreateView):
     model = User
-    template_name = "usuario/Registrar.html"
-    form_class = UserCreationForm
-    success_url = reverse_lazy('mostrarP')
+    template_name = "usuario/register/register.html"
+    form_class = RegistroUserForm
+    success_url = reverse_lazy('login')
 
 
 
@@ -26,6 +23,3 @@ def mostrarP(request):
 
 
 from django.views.generic import  TemplateView
-
-class Home(TemplateView):
-    template_name= 'index.html' 
