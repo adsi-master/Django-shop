@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth.models import User
-from django.views.generic import CreateView
+from django.views.generic import CreateView, TemplateView
 from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
@@ -33,5 +33,7 @@ def mostrarPerfil(request):
     perfil = UsuarioParametros.objects.get(id=request.user.id)   
     return render(request,'usuario/mostrarP.html',{'perfil':perfil})
 
+class Home(TemplateView):
+    template_name='index.html'
 
-from django.views.generic import  TemplateView
+
