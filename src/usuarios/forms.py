@@ -21,7 +21,7 @@ class UParametrosForm(forms.ModelForm):
         model = UsuarioParametros
         fields=[
             'tipodocumento','documento','nombre', 'apellido', 'telefono', 'correo', 'direccion',
-            'estasdocivil','genero'
+            'estasdocivil','genero','avatar'
         ]       
         widgets={
             'documento' : forms.TextInput(attrs={'class': 'form-control'}),
@@ -30,7 +30,7 @@ class UParametrosForm(forms.ModelForm):
             'telefono' : forms.TextInput(attrs={'class': 'form-control'}),
             'correo' : forms.TextInput(attrs={'class': 'form-control'}),
             'direccion' : forms.TextInput(attrs={'class': 'form-control'}),
-            'avatar' : forms.TextInput(attrs={'class': 'thumbnail'})
+            'avatar' : forms.ClearableFileInput(attrs={'class': 'form-control'}),
         }
 
 class RegistroUserForm(UserCreationForm):

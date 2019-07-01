@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib.auth.views import LoginView, LogoutView, TemplateView
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
 
 
 urlpatterns = [
@@ -25,3 +26,6 @@ urlpatterns = [
     path('usuarios/', include('src.usuarios.urls'), name='usuarios'),
     path('transaccion/', include('src.transaccion.urls'))
 ]
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

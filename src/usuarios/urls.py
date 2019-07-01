@@ -1,14 +1,18 @@
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+from .views import mostrarPerfil, EditarPerfil
+from .views import RegistroUsuario
 
-from .views import mostrarP
-from .views import mostrarP, RegistroUsuario
-from .models import UsuarioParametros
 
 
 urlpatterns = [
-    path('mostrarP/',mostrarP, name= 'mostrarP' ),
+    path('perfil/',mostrarPerfil, name= 'mostrarP' ),
+    path('editar/',EditarPerfil.as_view(), name= 'profile' ),
     path('registrar/',RegistroUsuario.as_view(), name= 'registrarse' ),
     
     
 ]
-# password2 username
+
+
+
+
