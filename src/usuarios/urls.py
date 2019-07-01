@@ -12,5 +12,3 @@ urlpatterns = [
     path('inicio/',Home.as_view(), name= 'home' ),
     path('exit/', LogoutView.as_view(),{'next_page': settings.LOGOUT_REDIRECT_URL}, name= 'salir' ),
 ]
-
-
