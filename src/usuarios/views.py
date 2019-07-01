@@ -7,8 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .forms import UParametrosForm, RegistroUserForm
 from .models import UsuarioParametros
-
-
+from django.contrib.auth import logout
 
 class RegistroUsuario(CreateView):
     model = User
@@ -31,9 +30,13 @@ class EditarPerfil(UpdateView):
 
 def mostrarPerfil(request):
     perfil = UsuarioParametros.objects.get(id=request.user.id)   
-    return render(request,'usuario/mostrarP.html',{'perfil':perfil})
+    return render(request,'usuario/perfil.html',{'perfil':perfil})
 
 class Home(TemplateView):
     template_name='index.html'
 
+
+def CerrarSesion(request):
+    logout(request)
+    reverse_lazy('login')
 

@@ -3,6 +3,7 @@
 {% block content %}
 
   {% load static %}
+
   <!-- menu -->
   <section id="menu" class="blqNav">
     <div class="container blqNav">
@@ -17,12 +18,11 @@
               <span class="icon-bar"></span>
             </button>          
           </div>
-          <div class="navbar-collapse collapse">
+          <div class="navbar-collapse collapse ">
             <!-- Left nav -->
-            <ul class="nav navbar-nav blqNav">
+            <ul class="nav navbar-nav blqNav justify-content-end">
               <li><a href="index.html">Inicio</a></li>
-              <li><a href='mostrarP'>Perfil</a></li>
-
+            
               <li><a href="#">Lenguajes <span class="caret"></span></a>
                 <ul class="dropdown-menu">                
                   <li><a href="#">PHP</a></li>
@@ -64,6 +64,7 @@
     </div>
   </section>
   <!-- / menu -->
+  {% block change %}
   <!-- Start slider -->
   <section id="aa-slider">
     <div class="aa-slider-area">
@@ -142,6 +143,7 @@
   </section>
   <!-- / slider -->
   <!-- Start Promo section -->
+ 
   <section id="aa-promo">
     <div class="container">
       <div class="row">
@@ -207,6 +209,7 @@
       </div>
     </div>
   </section>
+ 
   <!-- / Promo section -->
   <!-- Products section -->
   <section id="aa-product">
@@ -1582,6 +1585,7 @@
     </div>
   </section>
   <!-- / Subscribe section -->
+  {% endblock change %}
 
   <!-- footer -->  
   <footer id="aa-footer">

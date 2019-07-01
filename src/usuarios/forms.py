@@ -40,13 +40,10 @@ class RegistroUserForm(UserCreationForm):
             'username',
             'password1',
             'password2',
-            'email'
            ]
         
         widgets={
-            
             'username' :  forms.TextInput(attrs={'class': 'input100', 'type':'text'}),
             'password1' : forms.TextInput(attrs={'class': 'input100', 'type':'password'}),
-            'password2' : forms.TextInput(attrs={'class': 'input100', 'type':'password'}),
-            'email'     : forms.TextInput(attrs={'class': 'input100', 'type':'email'}), 
+            'password2' : forms.TextInput(attrs={'class': 'input100', 'type':'password'}), 
         }
