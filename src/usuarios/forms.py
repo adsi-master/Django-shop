@@ -12,16 +12,16 @@ class FormLogin(UserCreationForm):
         ]
 
 class UParametrosForm(forms.ModelForm):
-    tipodocumento = forms.ModelChoiceField(initial='', queryset=TipoDocumento.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger btn'}))
-    estasdocivil = forms.ModelChoiceField(initial='', queryset=EstadoCivil.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger btn'}))
-    genero = forms.ModelChoiceField(initial='', queryset=Genero.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger btn'}))
+    tipodocumento = forms.ModelChoiceField(initial='', queryset=TipoDocumento.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger form-control'}))
+    estadocivil = forms.ModelChoiceField(initial='', queryset=EstadoCivil.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger form-control'}))
+    genero = forms.ModelChoiceField(initial='', queryset=Genero.objects.all(), widget=forms.Select(attrs={'class':'dropdown-trigger form-control'}))
 
 
     class Meta:
         model = UsuarioParametros
         fields=[
             'tipodocumento','documento','nombre', 'apellido', 'telefono', 'correo', 'direccion',
-            'estasdocivil','genero','avatar'
+            'estadocivil','genero','avatar'
         ]       
         widgets={
             'documento' : forms.TextInput(attrs={'class': 'form-control'}),

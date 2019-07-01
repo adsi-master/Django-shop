@@ -16,10 +16,11 @@ class RegistroUsuario(CreateView):
     success_url = reverse_lazy('home')
     
 @method_decorator(login_required, name='dispatch')
+
 class EditarPerfil(UpdateView):
     form_class = UParametrosForm
-    success_url = reverse_lazy('mostrarP')
-    template_name = 'usuario/editarP.html'
+    success_url = reverse_lazy('home')
+    template_name = 'usuario/editarPerfil.html'
 
     def get_object(self):
         #recuperar el objeto que se va a editar
