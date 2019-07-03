@@ -1,37 +1,75 @@
 from django.db import models
-from src.usuariosparametros.models import TipoDocumento, TipoUsuario, Titulo
 
-class Usuario(models.Model):  
-    tipousuario = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE)
-    token = models.CharField('token', max_length=50)
-    alias = models.CharField(max_length =50, verbose_name = "Nombre Alias", unique=True)
-    contaseña = models.CharField(max_length = 50, default = "", verbose_name = "Contraseña")
-    correo = models.CharField(max_length = 50, default = "@", verbose_name = "Correo Electronico")
-    created_at = models.DateTimeField(auto_now_add=True, auto_now=False, verbose_name = "Registrado el : ")
-    updated_at = models.DateTimeField(auto_now_add=False, auto_now=True, verbose_name = "Actualizado el : ")
+from django.db.models.signals import post_save
+from django.contrib.auth.models import User
 
-    class meta:        
-        verbose_name = "usuario"
-        verbose_name_plural = "usuarios"
+# modelo usuario incluye los campos de:
+# username, firstname, lastname, email, password, groups... 
 
-    def __str__(self):
-        return self.alias 
+# Se crea la clase TipoDocumento :
+class TipoDocumento(models.Model):
+    id = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=50)
 
-class DatosUsuario(models.Model): 
-    usuario_id = models.OneToOneField(Usuario, on_delete = models.CASCADE, verbose_name ="Identificacion del Usuario")
-    titulo_nombre = models.ForeignKey(Titulo, on_delete=models.CASCADE)
-    tipodocumento_id = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE)
-    nombres = models.CharField(max_length = 50, verbose_name = "Nombres")
-    apellido = models.CharField(max_length = 50, verbose_name = "Apellidos")
-    documento = models.CharField(max_length = 50, verbose_name = "No. Documento")
-    telefono = models.CharField(max_length = 50, default = "0", verbose_name = "No. Telefono")
-    edad = models.CharField(max_length = 50, default = "0", verbose_name = "Edad")
-    created_ad = models.DateTimeField(auto_now_add=True, verbose_name = "Registrado el : ")
-    update_ad = models.DateTimeField(auto_now_add=True, verbose_name = "Actualizado el : ")
-
-    class meta:
-        verbose_name = "Dato Usuario"
-        verbose_name_plural = "Datos Usuarios"
+    class Meta:
+        verbose_name = 'Tipo de docuemnto'
+        verbose_name_plural = 'Tipos de documentos'
 
     def __str__(self):
-        return self.nombres
+        return self.nombre
+
+# Se crea la clase Genero :
+class Genero(models.Model):
+    id = models.AutoField(primary_key=True)
+    genero = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Genero'
+        verbose_name_plural = 'Generos'
+
+    def __str__(self):
+        return self.genero
+
+# Se crea la clase EstadoCivil :
+class EstadoCivil(models.Model):
+    id = models.AutoField(primary_key=True)
+    estado = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = 'Estado Civil'
+        verbose_name_plural = 'Tipos de Estados Civiles'
+
+    def __str__(self):
+        return self.estado
+
+# Se crea la clase UsuarioParametro :
+class UsuarioParametros(models.Model):
+    id=models.AutoField(primary_key=True)
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE)
+    tipodocumento = models.ForeignKey(TipoDocumento, on_delete=models.CASCADE, blank=True, null=True) 
+    nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    telefono = models.CharField(max_length=100)
+    correo = models.EmailField(max_length=100)
+    direccion = models.CharField(max_length=100)
+    documento = models.CharField(max_length=50, unique=True, blank=True, null=True)
+    estasdocivil = models.ForeignKey(EstadoCivil, on_delete=models.CASCADE, blank=True, null=True) 
+    genero = models.CharField(max_length=50)
+    avatar = models.ImageField(upload_to='avatars', blank=True)
+
+    class Meta:
+        verbose_name = 'Perfil usuario'
+        verbose_name_plural = 'Perfiles de usuario'
+
+    def __str__(self):
+        return self.usuario.username
+
+def create_profile(sender, **kwargs):
+    #si el usuario es creado..
+    if kwargs['created']:
+        #crea instancia de perfildeusuario
+        UsuarioParametros.objects.create(usuario=kwargs['instance'])
+
+post_save.connect(create_profile, sender=User)
+
+

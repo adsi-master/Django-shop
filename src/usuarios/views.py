@@ -1,27 +1,36 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Usuario
-from .forms import ContactForm
+from django.shortcuts import render, HttpResponse,redirect
+from django.contrib.auth.models import User
+from django.views.generic import CreateView, TemplateView
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
+from .forms import UParametrosForm, RegistroUserForm
+from .models import UsuarioParametros
 
-def usuariosLista(request):
-    usa = Usuario.objects.all()
-    form = ContactForm()
-    return render(request, 'usuario/listaUsuario.html', {'usa':usa, 'form': form})
+
+class RegistroUsuario(CreateView):
+    model = User
+    template_name = "usuario/register/register.html"
+    form_class = RegistroUserForm
+    success_url = reverse_lazy('home')
     
-def usuariosCrear(request):
-    return HttpResponse('<h1>AQUI VA CREAR USUARIO<h1>')
 
-def usuariosEditar(request, id):
-    return HttpResponse('<h1>AQUI VA EDITAR USUARIO<h1>' + str(id))
 
-def usuariosBorrar(request, id):
-    return HttpResponse('<h1>AQUI VA BORRAR USUARIO<h1>' + str(id))
+class EditarPerfil(UpdateView):
+    form_class = UParametrosForm
+    success_url = reverse_lazy('home')
+    template_name = 'usuario/editarPerfil.html'
 
-def usuariosDetalle(request, id):
-    return HttpResponse('<h1>AQUI VA DETALLE USUARIO<h1>' + str(id))
+    def get_object(self):
+        #recuperar el objeto que se va a editar
+        profile, created = UsuarioParametros.objects.get_or_create(usuario = self.request.user)
+        return profile
 
-def login(request):
-    return render(request, 'autenticacion/index.html')
 
-def rec_contrasena(request):
-    return render(request, 'autenticacion/recuperar.html')
+
+def mostrarPerfil(request):
+    perfil = UsuarioParametros.objects.get(id=request.user.id)   
+    return render(request,'usuario/perfil.html',{'perfil':perfil})
+
+class Home(TemplateView):
+    template_name='index.html'
+

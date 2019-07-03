@@ -1,13 +1,14 @@
 from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
+from .views import mostrarPerfil, EditarPerfil, RegistroUsuario, Home
+from django.conf import settings
+from django.contrib.auth.views import LogoutView
 
-from .views import usuariosLista, usuariosCrear, usuariosBorrar, usuariosEditar, usuariosDetalle, login, rec_contrasena
 
 urlpatterns = [
-    path('', usuariosLista, name='usuariosLista'),
-    path('crear/', usuariosCrear, name='usuariosCrear'),
-    path('detalle/<int:id>', usuariosDetalle, name='usuariosDetalle'),
-    path('editar/<int:id>', usuariosEditar, name='usuariosEditar'),
-    path('borrar/<int:id>', usuariosBorrar, name='usuariosBorar'),
-    path('login/', login, name='login'),
-    path('recuperar/', rec_contrasena, name='recuperar')
+    path('perfil/',mostrarPerfil, name= 'mostrarP' ),
+    path('editar/',EditarPerfil.as_view(), name= 'profile' ),
+    path('registrar/',RegistroUsuario.as_view(), name= 'registrarse' ),
+    path('inicio/',Home.as_view(), name= 'home' ),
+    path('exit/', LogoutView.as_view(),{'next_page': settings.LOGOUT_REDIRECT_URL}, name= 'salir' ),
 ]

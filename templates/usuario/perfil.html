@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block change %}
+<section id="aa-catg-head-banner">
+  {% if perfil.avatar %}
+
+  <img src=" {{ perfil.avatar.url }}" style="width: 100%; height: 500px;" alt="fashion img">
+  {% else %}
+  <img src=" {% static 'img/linux.webp' %}" style="width: 100%; height: 700px;" alt="fashion img">
+  {% endif %}
+  <div class="aa-catg-head-banner-area">
+    <div class="container">
+      <div class="aa-catg-head-banner-content" style="color: white;">
+        <h2>Mi Informacion Personal</h2>
+
+        <strong>Tipo de documento de identidad: </strong><span>{{perfil.tipodocumento}}</span><br />
+        <strong>Identificación: </strong><span>{{perfil.documento}}</span><br />
+        <strong>Nombre: </strong><span>{{perfil.nombre}}</span><br />
+        <strong>Apellido: </strong><span>{{perfil.apellido}}</span><br />
+        <strong>Telefono: </strong><span>{{perfil.telefono}}</span><br>
+        <strong>Correo Electronico: </strong><span>{{perfil.correo}}</span><br />
+        <strong>Dirección: </strong><span>{{perfil.direccion}}</span><br />
+        <strong>Estado Civil: </strong><span>{{perfil.estasdocivil}}</span><br />
+        <strong>Genero: </strong><span>{{perfil.genero}}</span><br />
+        <a href="{% url 'profile' %}"><button class="btn btn-success btn-md mt-5">Editar</button></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock change %}

@@ -1,0 +1,42 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block change %}
+
+<section id="container section">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="text-center pt-3">Editar Perfil
+                <hr />
+            </h2>
+            <form action="" class="aa-login-form text-center" method="POST" enctype="multipart/form-data">
+                <label for="">Tipo de documento</label>
+                {{form.tipodocumento}}
+                <label for="">Documento</label>
+                {{form.documento}}
+                <label for="">Nombre</label>
+                {{form.nombre}}
+                <label for="">Apellido</label>
+                {{form.apellido}}
+                <label for="">Correo</label>
+                {{form.correo}}
+                <label for="">direccion</label>
+                {{form.direccion}}
+                <label for="">Telefono</label>
+                {{form.telefono}}
+                <label for="">Genero</label>
+                {{form.genero}}
+                <label for="">estadocivil</label>
+                {{form.estadocivil}}
+
+                <label for="">fotografia</label>
+                {{form.avatar}}
+
+                {% csrf_token %}
+
+                <button type="submit" class="aa-browse-btn pt-4 pb-4">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock change %}

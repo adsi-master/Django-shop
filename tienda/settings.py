@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,16 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'src.productos',
+    'src.usuarios',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'src.transaccion',
-    'src.productos',
-    'src.usuarios',
-    'src.usuariosparametros',
 ]
 
 MIDDLEWARE = [
@@ -76,14 +74,15 @@ WSGI_APPLICATION = 'tienda.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': 'tienda',
+        'LOCALHOST':'27017',
+        'USER': 'hanna',
+        'PASSWORD':'1234',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -124,6 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static')),
+<<<<<<< HEAD
 
 
 if DEBUG:
@@ -134,3 +134,11 @@ else:
     # live keys
     STRIPE_PUBLISHABLE_KEY = 'pk_test_uTFKaKAvFxt7CsG2fz7M6ZrE00OVLhbQG1'
     STRIPE_SECRET_KEY = 'sk_test_9QUsrnJooesUPD8qqrp4NpDu00VjQmILhX'
+=======
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL= reverse_lazy('login')
+
+#Media Files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+>>>>>>> 0d873f2b703a8bf141299386867264ef293bda7a

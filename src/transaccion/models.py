@@ -1,6 +1,6 @@
 from django.db import models
 from src.usuarios.models import Usuario
-# Create your models here.
+# Este modelo fue creado por: Juan Esteban Cortes
 class MetodoPago(models.Model):
     nombMetPago = models.CharField(max_length = 45,default = "",verbose_name = "Nombre método de pago")
 
@@ -10,9 +10,24 @@ class MetodoPago(models.Model):
     
     def __str__(self):
         return self.nombMetPago
+# Este modelo fue creado por: Jose David Duque Gutierrez
+class Transaccion(models.Model):
+    Total =  models.FloatField(verbose_name = "Total de la transaccion")
+    DetaMet = models.ForeignKey(DetalleMet,on_delete = models.CASCADE,verbose_name = "Detalle del Metodo")
+    Usuarioid = models.ForeignKey(Usuario,on_delete = models.CASCADE,verbose_name = "Usuario")
+    Fecha = models.DateTimeField(verbose_name="Fecha")
+    
+    class Meta:
+        verbose_name = "Transaccion"
+        verbose_name_plural = "Transacciones"
+    
+    def __str__(self):
+        return str(self.Total)
 
+# Este modelo fue creado por: Juan Esteban Cortes
 class DetalleMet(models.Model):
     IdMetodo = models.ForeignKey(MetodoPago,on_delete = models.CASCADE,verbose_name = "Método de pago")
+    Idtrasaccion = models.Foreignkey(Transaccion,on_delete = models.CASCADE,verbose_name = "Transaccion")
     valor = models.FloatField(verbose_name = "Valor")
     created_at = models.DateTimeField(auto_now_add = True,auto_now = False, verbose_name = "Creado el")
     update_at = models.DateTimeField(auto_now_add = False,auto_now = True,verbose_name = "Actualizado el")
@@ -22,24 +37,12 @@ class DetalleMet(models.Model):
     
     def __str__(self):
         return str(self.IdMetodo)
-
-#modelo de la trasaccion    
-class Transaccion(models.Model):
-    Total =  models.FloatField(verbose_name = "Total de la transaccion")
-    DetaMet = models.ForeignKey(DetalleMet,on_delete = models.CASCADE,verbose_name = "Detalle del Metodo")
-    
-    class Meta:
-        verbose_name = "Transaccion"
-        verbose_name_plural = "Transacciones"
-    
-    def __str__(self):
-        return str(self.Total)
-
+# Este modelo fue creado por: Jose david Duque Gutierrez
 class DetalleTra(models.Model):
     IdTransaccion = models.ForeignKey(Transaccion,on_delete = models.CASCADE,verbose_name = "Transaccion")
-    Usuario_id = models.ForeignKey(Usuario,on_delete = models.CASCADE,verbose_name = "Usuario")
-    #IdProducto = models.ForeignKey(Producto,on_delete = models.CASCADE,verbose_name = "Producto")
+    # IdProducto = models.ForeignKey(Producto,on_delete = models.CASCADE,verbose_name = "Producto")
     Fecha = models.DateTimeField(verbose_name="Fecha")
+    Cantidad = models.IntegerField(verbose_name="Cantidad")
     created_at = models.DateTimeField(auto_now_add = True,auto_now = False, verbose_name = "Creado el")
     update_at = models.DateTimeField(auto_now_add = False,auto_now = True,verbose_name = "Actualizado el")
 
