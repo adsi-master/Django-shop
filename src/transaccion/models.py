@@ -1,6 +1,6 @@
 from django.db import models
 from src.usuarios.models import Usuario
-# Create your models here.
+# Este modelo fue creado por: Juan Esteban Cortes
 class MetodoPago(models.Model):
     nombMetPago = models.CharField(max_length = 45,default = "",verbose_name = "Nombre método de pago")
 
@@ -10,7 +10,7 @@ class MetodoPago(models.Model):
     
     def __str__(self):
         return self.nombMetPago
-
+# Este modelo fue creado por: Jose David Duque Gutierrez
 class Transaccion(models.Model):
     Total =  models.FloatField(verbose_name = "Total de la transaccion")
     DetaMet = models.ForeignKey(DetalleMet,on_delete = models.CASCADE,verbose_name = "Detalle del Metodo")
@@ -24,6 +24,7 @@ class Transaccion(models.Model):
     def __str__(self):
         return str(self.Total)
 
+# Este modelo fue creado por: Juan Esteban Cortes
 class DetalleMet(models.Model):
     IdMetodo = models.ForeignKey(MetodoPago,on_delete = models.CASCADE,verbose_name = "Método de pago")
     Idtrasaccion = models.Foreignkey(Transaccion,on_delete = models.CASCADE,verbose_name = "Transaccion")
@@ -36,7 +37,7 @@ class DetalleMet(models.Model):
     
     def __str__(self):
         return str(self.IdMetodo)
-
+# Este modelo fue creado por: Jose david Duque Gutierrez
 class DetalleTra(models.Model):
     IdTransaccion = models.ForeignKey(Transaccion,on_delete = models.CASCADE,verbose_name = "Transaccion")
     # IdProducto = models.ForeignKey(Producto,on_delete = models.CASCADE,verbose_name = "Producto")
