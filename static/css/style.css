@@ -2557,7 +2557,8 @@ img {
 }
 .aa-payment-method {
   border: 1px solid #ccc;
-  padding: 15px;
+  padding: 7vh;
+  padding-bottom: 8.5vh;
 }
 .aa-payment-method label {
   width: 100%;
@@ -3150,7 +3151,7 @@ img {
   font-size: 15px;
 }
 .aa-blog-details #respond .required {
-  color: #ffa000;
+  color: #ffb300;
 }
 .aa-blog-details #respond label {
   display: block;

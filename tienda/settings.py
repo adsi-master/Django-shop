@@ -124,3 +124,13 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static')),
+
+
+if DEBUG:
+    # test keys
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_uTFKaKAvFxt7CsG2fz7M6ZrE00OVLhbQG1'
+    STRIPE_SECRET_KEY = 'sk_test_9QUsrnJooesUPD8qqrp4NpDu00VjQmILhX'
+else:
+    # live keys
+    STRIPE_PUBLISHABLE_KEY = 'pk_test_uTFKaKAvFxt7CsG2fz7M6ZrE00OVLhbQG1'
+    STRIPE_SECRET_KEY = 'sk_test_9QUsrnJooesUPD8qqrp4NpDu00VjQmILhX'
