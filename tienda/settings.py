@@ -123,8 +123,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static')),
-<<<<<<< HEAD
-
 
 if DEBUG:
     # test keys
@@ -134,11 +132,9 @@ else:
     # live keys
     STRIPE_PUBLISHABLE_KEY = 'pk_test_uTFKaKAvFxt7CsG2fz7M6ZrE00OVLhbQG1'
     STRIPE_SECRET_KEY = 'sk_test_9QUsrnJooesUPD8qqrp4NpDu00VjQmILhX'
-=======
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL= reverse_lazy('login')
 
 #Media Files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
->>>>>>> 0d873f2b703a8bf141299386867264ef293bda7a

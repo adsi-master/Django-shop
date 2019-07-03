@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-<<<<<<< HEAD
 from django.conf import settings
 import stripe
 
@@ -31,11 +30,8 @@ def checkout(request, **kwargs):
 
     return render(request, 'dailyShop/checkout.html')
 
-
-
-=======
 from .models import Transaccion
->>>>>>> 0d873f2b703a8bf141299386867264ef293bda7a
+
 # Create your views here.
 
 # class TransaccionList(ListView):
